@@ -61,7 +61,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 /** \brief QWERTY layout (3 rows, 10 columns). */
 #define LAYOUT_LAYER_BASE                                                                     \
        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, \
-       KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, \
+       KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, CW_TOGG, \
        KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, \
                       ESC_NAV, SPC_NUM, TAB_FUN,  KC_ENT, BSP_SYM
 
@@ -171,3 +171,9 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 // rgb_matrix.c.
 void rgb_matrix_update_pwm_buffers(void);
 #endif
+
+bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
+    return IS_RETRO(keycode);
+}
+// TODO: retro-shift seems to affect even non-alpha tap-hold keys like backspace and so on. Not great since that makes it so I cant actually hold backspace.
+// Also, caps word is not working.

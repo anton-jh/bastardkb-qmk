@@ -26,8 +26,15 @@
 #    define NO_ACTION_ONESHOT
 #endif // __arm__
 
-/* Charybdis-specific features. */
 
+/* Stuff */
+
+#define CAPS_WORD_INVERT_ON_SHIFT
+#define RETRO_SHIFT 1000
+#define PERMISSIVE_HOLD
+
+
+/* Charybdis-specific features. */
 
 #ifdef POINTING_DEVICE_ENABLE
 #   define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
