@@ -80,7 +80,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_POINTER                                                                  \
     _______________DEAD_HALF_ROW_______________, S_D_MOD, DPI_MOD, XXXXXXX, XXXXXXX, XXXXXXX, \
     ______________HOME_ROW_GASC_L______________, XXXXXXX, KC_BTN1, KC_BTN3, KC_BTN2, SNIPING, \
-    _______________DEAD_HALF_ROW_______________, XXXXXXX, DRGSCRL, XXXXXXX, XXXXXXX, XXXXXXX, \
+    _______________DEAD_HALF_ROW_______________, XXXXXXX, XXXXXXX, DRGSCRL, XXXXXXX, XXXXXXX, \
                       _______, _______, _______, _______, _______
 
 #define LAYOUT_LAYER_NAVIGATION                                                              \
@@ -177,3 +177,4 @@ bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
 }
 // TODO: retro-shift seems to affect even non-alpha tap-hold keys like backspace and so on. Not great since that makes it so I cant actually hold backspace.
 // Also, caps word is not working.
+// May need a bit more debounce.
