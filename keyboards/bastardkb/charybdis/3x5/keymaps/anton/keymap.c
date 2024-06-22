@@ -58,23 +58,23 @@ static uint16_t auto_pointer_layer_timer = 0;
 #endif // !POINTING_DEVICE_ENABLE
 
 // clang-format off
-/** \brief QWERTY layout (3 rows, 10 columns). */
+
+/** Convenience row shorthands. */
+#define _______________DEAD_HALF_ROW_______________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+#define ______________HOME_ROW_GASC_L______________ KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, XXXXXXX
+#define ______________HOME_ROW_GASC_R______________ XXXXXXX, KC_LCTL, KC_LSFT, KC_LALT, XXXXXXX
+
+
 #define LAYOUT_LAYER_BASE                                                                     \
        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, \
        KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, CW_TOGG, \
        KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, \
                       ESC_NAV, SPC_NUM, TAB_FUN,  KC_ENT, BSP_SYM
 
-/** Convenience row shorthands. */
-#define _______________DEAD_HALF_ROW_______________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-#define ______________HOME_ROW_GASC_L______________ KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, XXXXXXX
-#define ______________HOME_ROW_GASC_R______________ XXXXXXX, KC_LCTL, KC_LSFT, KC_LALT, KC_LGUI
-
-
-#define LAYOUT_LAYER_FUNCTION                                                                  \
-    _______________DEAD_HALF_ROW_______________, KC_PSCR,   KC_F9,   KC_F10,  KC_F11,  KC_F12, \
-    ______________HOME_ROW_GASC_L______________, KC_SCRL,   KC_F5,   KC_F6,   KC_F7,   KC_F8,  \
-    _______________DEAD_HALF_ROW_______________, KC_PAUS,   KC_F1,   KC_F2,   KC_F3,   KC_F4,  \
+#define LAYOUT_LAYER_FUNCTION                                                                 \
+    _______________DEAD_HALF_ROW_______________, KC_PSCR,   KC_F9,  KC_F10,  KC_F11,  KC_F12, \
+    ______________HOME_ROW_GASC_L______________, KC_SCRL,   KC_F5,   KC_F6,   KC_F7,   KC_F8, \
+    _______________DEAD_HALF_ROW_______________, KC_PAUS,   KC_F1,   KC_F2,   KC_F3,   KC_F4, \
                       XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
 
 #define LAYOUT_LAYER_POINTER                                                                  \
@@ -83,9 +83,9 @@ static uint16_t auto_pointer_layer_timer = 0;
     _______________DEAD_HALF_ROW_______________, XXXXXXX, XXXXXXX, DRGSCRL, XXXXXXX, XXXXXXX, \
                       _______, _______, _______, _______, _______
 
-#define LAYOUT_LAYER_NAVIGATION                                                              \
+#define LAYOUT_LAYER_NAVIGATION                                                               \
     XXXXXXX, KC_HOME,   KC_UP,  KC_END, XXXXXXX, _______________DEAD_HALF_ROW_______________, \
-    XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, _______________DEAD_HALF_ROW_______________, \
+    XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, ______________HOME_ROW_GASC_R______________, \
     XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, _______________DEAD_HALF_ROW_______________, \
                       _______, _______, _______,  KC_ENT, KC_BSPC
 
@@ -95,7 +95,7 @@ static uint16_t auto_pointer_layer_timer = 0;
        KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_KP_0, KC_KP_1, KC_KP_2, KC_KP_3, KC_PDOT, \
                       _______, _______, _______,  KC_ENT, KC_BSPC
 
-#define LAYOUT_LAYER_SYMBOLS                                                                 \
+#define LAYOUT_LAYER_SYMBOLS                                                                  \
     KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR, _______________DEAD_HALF_ROW_______________, \
     KC_COLN,  KC_DLR, KC_PERC, KC_CIRC, KC_PLUS, ______________HOME_ROW_GASC_R______________, \
     KC_TILD, KC_EXLM,   KC_AT, KC_HASH, KC_PIPE, _______________DEAD_HALF_ROW_______________, \
@@ -109,7 +109,7 @@ static uint16_t auto_pointer_layer_timer = 0;
              L00,         L01,         L02,         L03,         L04,  \
              R05,         R06,         R07,         R08,         R09,  \
       LGUI_T(L10), LALT_T(L11), LSFT_T(L12), LCTL_T(L13),        L14,  \
-             R15,  RCTL_T(R16), RSFT_T(R17), LALT_T(R18), RGUI_T(R19), \
+             R15,  RCTL_T(R16), RSFT_T(R17), LALT_T(R18),        R19,  \
       __VA_ARGS__
 #define HOME_ROW_MOD_GASC(...) _HOME_ROW_MOD_GASC(__VA_ARGS__)
 
@@ -173,8 +173,23 @@ void rgb_matrix_update_pwm_buffers(void);
 #endif
 
 bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
-    return IS_RETRO(keycode);
+    switch (keycode) {
+        case LGUI_T(KC_A):
+        case LALT_T(KC_S):
+        case LSFT_T(KC_D):
+        case LCTL_T(KC_F):
+        case LALT_T(KC_L):
+        case RSFT_T(KC_K):
+        case RCTL_T(KC_J):
+            return true;
+    }
+    return false;
 }
-// TODO: retro-shift seems to affect even non-alpha tap-hold keys like backspace and so on. Not great since that makes it so I cant actually hold backspace.
-// Also, caps word is not working.
-// May need a bit more debounce.
+
+
+const uint16_t PROGMEM test_combo1[] = {KC_A, KC_B, COMBO_END};
+const uint16_t PROGMEM test_combo2[] = {KC_C, KC_D, COMBO_END};
+combo_t key_combos[] = {
+    COMBO(test_combo1, KC_ESC),
+    COMBO(test_combo2, LCTL(KC_Z)), // keycodes with modifiers are possible too!
+};
