@@ -79,8 +79,8 @@ static uint16_t auto_pointer_layer_timer = 0;
 
 #define LAYOUT_LAYER_POINTER                                                                  \
     _______________DEAD_HALF_ROW_______________, S_D_MOD, DPI_MOD, XXXXXXX, XXXXXXX, XXXXXXX, \
-    ______________HOME_ROW_GASC_L______________, XXXXXXX, KC_BTN1, KC_BTN3, KC_BTN2, SNIPING, \
-    _______________DEAD_HALF_ROW_______________, XXXXXXX, XXXXXXX, DRGSCRL, XXXXXXX, XXXXXXX, \
+    ______________HOME_ROW_GASC_L______________, XXXXXXX, XXXXXXX, KC_BTN3, XXXXXXX, XXXXXXX, \
+    _______________DEAD_HALF_ROW_______________, XXXXXXX, KC_BTN1, DRGSCRL, KC_BTN2, SNIPING, \
                       _______, _______, _______, _______, _______
 
 #define LAYOUT_LAYER_NAVIGATION                                                               \
