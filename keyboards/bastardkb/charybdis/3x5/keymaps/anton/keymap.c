@@ -15,6 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+//#include "keymap_swedish.h"
 
 #ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 #    include "timer.h"
@@ -60,6 +61,86 @@ enum charybdis_keymap_layers {
 
 // clang-format off
 
+#define SE_SECT KC_GRV  // §
+#define SE_1    KC_1    // 1
+#define SE_2    KC_2    // 2
+#define SE_3    KC_3    // 3
+#define SE_4    KC_4    // 4
+#define SE_5    KC_5    // 5
+#define SE_6    KC_6    // 6
+#define SE_7    KC_7    // 7
+#define SE_8    KC_8    // 8
+#define SE_9    KC_9    // 9
+#define SE_0    KC_0    // 0
+#define SE_PLUS KC_MINS // +
+#define SE_ACUT KC_EQL  // ´ (dead)
+#define SE_Q    KC_Q    // Q
+#define SE_W    KC_W    // W
+#define SE_E    KC_E    // E
+#define SE_R    KC_R    // R
+#define SE_T    KC_T    // T
+#define SE_Y    KC_Y    // Y
+#define SE_U    KC_U    // U
+#define SE_I    KC_I    // I
+#define SE_O    KC_O    // O
+#define SE_P    KC_P    // P
+#define SE_ARNG KC_LBRC // Å
+#define SE_DIAE KC_RBRC // ¨ (dead)
+#define SE_A    KC_A    // A
+#define SE_S    KC_S    // S
+#define SE_D    KC_D    // D
+#define SE_F    KC_F    // F
+#define SE_G    KC_G    // G
+#define SE_H    KC_H    // H
+#define SE_J    KC_J    // J
+#define SE_K    KC_K    // K
+#define SE_L    KC_L    // L
+#define SE_ODIA KC_SCLN // Ö
+#define SE_ADIA KC_QUOT // Ä
+#define SE_QUOT KC_NUHS // '
+#define SE_LABK KC_NUBS // <
+#define SE_Z    KC_Z    // Z
+#define SE_X    KC_X    // X
+#define SE_C    KC_C    // C
+#define SE_V    KC_V    // V
+#define SE_B    KC_B    // B
+#define SE_N    KC_N    // N
+#define SE_M    KC_M    // M
+#define SE_COMM KC_COMM // ,
+#define SE_DOT  KC_DOT  // .
+#define SE_MINS KC_SLSH // -
+#define SE_HALF S(SE_SECT) // ½
+#define SE_EXLM S(SE_1)    // !
+#define SE_DQUO S(SE_2)    // "
+#define SE_HASH S(SE_3)    // #
+#define SE_CURR S(SE_4)    // ¤
+#define SE_PERC S(SE_5)    // %
+#define SE_AMPR S(SE_6)    // &
+#define SE_SLSH S(SE_7)    // /
+#define SE_LPRN S(SE_8)    // (
+#define SE_RPRN S(SE_9)    // )
+#define SE_EQL  S(SE_0)    // =
+#define SE_QUES S(SE_PLUS) // ?
+#define SE_GRV  S(SE_ACUT) // ` (dead)
+#define SE_CIRC S(SE_DIAE) // ^ (dead)
+#define SE_ASTR S(SE_QUOT) // *
+#define SE_RABK S(SE_LABK) // >
+#define SE_SCLN S(SE_COMM) // ;
+#define SE_COLN S(SE_DOT)  // :
+#define SE_UNDS S(SE_MINS) // _
+#define SE_AT   ALGR(SE_2)    // @
+#define SE_PND  ALGR(SE_3)    // £
+#define SE_DLR  ALGR(SE_4)    // $
+#define SE_EURO ALGR(SE_5)    // €
+#define SE_LCBR ALGR(SE_7)    // {
+#define SE_LBRC ALGR(SE_8)    // [
+#define SE_RBRC ALGR(SE_9)    // ]
+#define SE_RCBR ALGR(SE_0)    // }
+#define SE_BSLS ALGR(SE_PLUS) // (backslash)
+#define SE_TILD ALGR(SE_DIAE) // ~ (dead)
+#define SE_PIPE ALGR(SE_LABK) // |
+#define SE_MICR ALGR(SE_M)    // µ
+
 /** Convenience row shorthands. */
 #define _______________DEAD_HALF_ROW_______________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 #define ______________HOME_ROW_GASC_L______________ KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, XXXXXXX
@@ -96,11 +177,11 @@ enum charybdis_keymap_layers {
        KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_KP_0, KC_KP_1, KC_KP_2, KC_KP_3, KC_PDOT, \
                       _______, _______, _______,  KC_ENT, KC_BSPC
 
-#define LAYOUT_LAYER_SYMBOLS                                                                  \
-    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR, _______________DEAD_HALF_ROW_______________, \
-    KC_COLN,  KC_DLR, KC_PERC, KC_CIRC, KC_PLUS, ______________HOME_ROW_GASC_R______________, \
-    KC_TILD, KC_EXLM,   KC_AT, KC_HASH, KC_PIPE, _______________DEAD_HALF_ROW_______________, \
-                      KC_LPRN, KC_RPRN, KC_UNDS, _______, XXXXXXX
+#define LAYOUT_LAYER_SYMBOLS                                                                  \ // todo: macros for caret, backtick, tilde
+    SE_PERC, SE_HASH, SE_AMPR,  SE_DLR, XXXXXXX,  SE_GRV, SE_SLSH, SE_ARNG, SE_ADIA, SE_ODIA, \
+    SE_EXLM, SE_DQUO,  SE_EQL, SE_RABR, KC_PLUS, SE_QUOT, SE_LPRN, SE_RPRN, SE_LCBR, SE_RCBR, \
+    SE_BSLS, SE_LABR, SE_PIPE,   SE_AT, XXXXXXX, XXXXXXX, SE_PLUS, SE_QUES, SE_LBRC, SE_RBRC, \
+                      _______, _______, _______, _______, _______
 
 
 #define _HOME_ROW_MOD_GASC(                                            \
