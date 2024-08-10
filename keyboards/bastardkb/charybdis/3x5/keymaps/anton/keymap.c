@@ -30,6 +30,12 @@ enum charybdis_keymap_layers {
     LAYER_SYMBOLS,
 };
 
+enum custom_keycodes {
+    M_CARET = SAFE_RANGE,
+    M_BTICK,
+    M_TILDE
+};
+
 // Automatically enable sniping-mode on the pointer layer.
 // #define CHARYBDIS_AUTO_SNIPING_ON_LAYER LAYER_POINTER
 
@@ -177,10 +183,10 @@ enum charybdis_keymap_layers {
        KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_KP_0, KC_KP_1, KC_KP_2, KC_KP_3, KC_PDOT, \
                       _______, _______, _______,  KC_ENT, KC_BSPC
 
-#define LAYOUT_LAYER_SYMBOLS                                                                  \ // todo: macros for caret, backtick, tilde
-    SE_PERC, SE_HASH, SE_AMPR,  SE_DLR, XXXXXXX,  SE_GRV, SE_SLSH, SE_ARNG, SE_ADIA, SE_ODIA, \
-    SE_EXLM, SE_DQUO,  SE_EQL, SE_RABR, KC_PLUS, SE_QUOT, SE_LPRN, SE_RPRN, SE_LCBR, SE_RCBR, \
-    SE_BSLS, SE_LABR, SE_PIPE,   SE_AT, XXXXXXX, XXXXXXX, SE_PLUS, SE_QUES, SE_LBRC, SE_RBRC, \
+#define LAYOUT_LAYER_SYMBOLS                                                                  \
+    SE_PERC, SE_HASH, SE_AMPR,  SE_DLR, M_CARET, SE_ACUT, SE_SLSH, SE_ARNG, SE_ADIA, SE_ODIA, \
+    SE_EXLM, SE_DQUO,  SE_EQL, SE_RABK, SE_PLUS, SE_QUOT, SE_LPRN, SE_RPRN, SE_LCBR, SE_RCBR, \
+    SE_BSLS, SE_LABK, SE_PIPE,   SE_AT, M_BTICK, M_TILDE, SE_PLUS, SE_QUES, SE_LBRC, SE_RBRC, \
                       _______, _______, _______, _______, _______
 
 
@@ -255,15 +261,59 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 void rgb_matrix_update_pwm_buffers(void);
 #endif
 
-bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
+// bool get_custom_auto_shifted_key(uint16_t keycode, keyrecord_t *record) {
+//     switch (keycode) {
+//         case LGUI_T(KC_A):
+//         case LALT_T(KC_S):
+//         case LSFT_T(KC_D):
+//         case LCTL_T(KC_F):
+//         case LALT_T(KC_L):
+//         case RSFT_T(KC_K):
+//         case RCTL_T(KC_J):
+//             return true;
+//     }
+//     return false;
+// }
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case LGUI_T(KC_A):
-        case LALT_T(KC_S):
-        case LSFT_T(KC_D):
-        case LCTL_T(KC_F):
-        case LALT_T(KC_L):
-        case RSFT_T(KC_K):
-        case RCTL_T(KC_J):
+        case M_CARET:
+            if (record->event.pressed) {
+                register_code(KC_LSFT);
+                register_code(KC_RBRC); // (¨)
+                // _delay_ms(10);
+                unregister_code(KC_RBRC); // (¨)
+                unregister_code(KC_LSFT);
+                register_code(KC_SPC);
+                //_delay_ms(10);
+                unregister_code(KC_SPC);
+            }
+            break;
+        case M_BTICK:
+            if (record->event.pressed) {
+                register_code(KC_LSFT);
+                register_code(KC_EQL); // (´)
+                //_delay_ms(10);
+                unregister_code(KC_EQL); // (´)
+                unregister_code(KC_LSFT);
+                register_code(KC_SPC);
+                //_delay_ms(10);
+                unregister_code(KC_SPC);
+            }
+            break;
+        case M_TILDE:
+            if(record->event.pressed) {
+                register_code(KC_RALT);
+                register_code(KC_RBRC); // (¨)
+                //_delay_ms(10);
+                unregister_code(KC_RBRC); // (¨)
+                unregister_code(KC_RALT);
+                register_code(KC_SPC);
+                //_delay_ms(10);
+                unregister_code(KC_SPC);
+            }
+            break;
+        default:
             return true;
     }
     return false;
