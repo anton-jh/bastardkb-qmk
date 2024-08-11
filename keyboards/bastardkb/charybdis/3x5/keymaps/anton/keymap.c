@@ -103,6 +103,7 @@
 
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
+    LAYER_GAME,
     LAYER_FUNCTION,
     LAYER_NAVIGATION,
     LAYER_POINTER,
@@ -137,6 +138,10 @@ enum custom_keycodes {
 #define ESC_FUN LT(LAYER_FUNCTION, KC_ESC)
 #define BSP_SYM LT(LAYER_SYMBOLS, KC_BSPC)
 #define A_SYM LT(LAYER_SYMBOLS, KC_A)
+#define DF_BASE DF(LAYER_BASE)
+#define DF_GAME DF(LAYER_GAME)
+#define TAB_NUM LT(LAYER_NUMERAL, KC_TAB)
+#define ESC_NAV LT(LAYER_NAVIGATION, KC_ESC)
 // #define _L_PTR(KC) LT(LAYER_POINTER, KC)
 
 #ifndef POINTING_DEVICE_ENABLE
@@ -160,10 +165,16 @@ enum custom_keycodes {
        KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, \
                       TAB_NAV, SPC_NUM, ESC_FUN,  KC_ENT, BSP_SYM
 
+#define LAYOUT_LAYER_GAME                                                                     \
+     KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, \
+    KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F,    KC_H,    KC_J,    KC_K,    KC_L, DF_BASE, \
+    KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, \
+                      TAB_NUM, KC_SPC, ESC_NAV,  KC_ENT, BSP_SYM
+
 #define LAYOUT_LAYER_FUNCTION                                                                 \
     _______________DEAD_HALF_ROW_______________, KC_PSCR,   KC_F9,  KC_F10,  KC_F11,  KC_F12, \
     ______________HOME_ROW_GASC_L______________, KC_SCRL,   KC_F5,   KC_F6,   KC_F7,   KC_F8, \
-    _______________DEAD_HALF_ROW_______________, KC_PAUS,   KC_F1,   KC_F2,   KC_F3,   KC_F4, \
+    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DF_GAME, KC_PAUS,   KC_F1,   KC_F2,   KC_F3,   KC_F4, \
                       XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
 
 #define LAYOUT_LAYER_POINTER                                                                  \
@@ -173,8 +184,8 @@ enum custom_keycodes {
                       _______, _______, M_CLEAR, _______, _______
 
 #define LAYOUT_LAYER_NAVIGATION                                                               \
-    XXXXXXX, KC_HOME,   KC_UP,  KC_END, XXXXXXX, _______________DEAD_HALF_ROW_______________, \
-    XXXXXXX, KC_LEFT, KC_DOWN, KC_RGHT, XXXXXXX, ______________HOME_ROW_GASC_R______________, \
+    KC_PGUP, KC_HOME,   KC_UP,  KC_END,  KC_INS, _______________DEAD_HALF_ROW_______________, \
+    KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,  KC_DEL, ______________HOME_ROW_GASC_R______________, \
     XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, _______________DEAD_HALF_ROW_______________, \
                       _______, _______, _______,  KC_ENT, KC_BSPC
 
@@ -210,6 +221,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT_wrapper(
     HOME_ROW_MOD_GASC(LAYOUT_LAYER_BASE)
   ),
+  [LAYER_GAME] = LAYOUT_wrapper(LAYOUT_LAYER_GAME),
   [LAYER_FUNCTION] = LAYOUT_wrapper(LAYOUT_LAYER_FUNCTION),
   [LAYER_NAVIGATION] = LAYOUT_wrapper(LAYOUT_LAYER_NAVIGATION),
   [LAYER_NUMERAL] = LAYOUT_wrapper(
