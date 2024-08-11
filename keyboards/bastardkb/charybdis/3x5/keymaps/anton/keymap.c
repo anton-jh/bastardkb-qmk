@@ -15,58 +15,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include QMK_KEYBOARD_H
+
 //#include "keymap_swedish.h"
-
-#ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
-#    include "timer.h"
-#endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
-
-enum charybdis_keymap_layers {
-    LAYER_BASE = 0,
-    LAYER_FUNCTION,
-    LAYER_NAVIGATION,
-    LAYER_POINTER,
-    LAYER_NUMERAL,
-    LAYER_SYMBOLS,
-};
-
-enum custom_keycodes {
-    M_CARET = SAFE_RANGE,
-    M_BTICK,
-    M_TILDE
-};
-
-// Automatically enable sniping-mode on the pointer layer.
-// #define CHARYBDIS_AUTO_SNIPING_ON_LAYER LAYER_POINTER
-
-#ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
-//static uint16_t auto_pointer_layer_timer = 0;
-
-#    ifndef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS
-#        define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS 1000
-#    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS
-
-#    ifndef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD
-#        define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD 8
-#    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD
-#endif     // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
-
-#define ESC_NAV LT(LAYER_NAVIGATION, KC_ESC)
-#define SPC_NUM LT(LAYER_NUMERAL, KC_SPC)
-#define TAB_FUN LT(LAYER_FUNCTION, KC_TAB)
-#define BSP_SYM LT(LAYER_SYMBOLS, KC_BSPC)
-#define ESC_PNT TG(LAYER_POINTER)
-// #define _L_PTR(KC) LT(LAYER_POINTER, KC)
-
-#ifndef POINTING_DEVICE_ENABLE
-#    define DRGSCRL KC_NO
-#    define DPI_MOD KC_NO
-#    define S_D_MOD KC_NO
-#    define SNIPING KC_NO
-#endif // !POINTING_DEVICE_ENABLE
-
-// clang-format off
-
 #define SE_SECT KC_GRV  // §
 #define SE_1    KC_1    // 1
 #define SE_2    KC_2    // 2
@@ -147,17 +97,68 @@ enum custom_keycodes {
 #define SE_PIPE ALGR(SE_LABK) // |
 #define SE_MICR ALGR(SE_M)    // µ
 
+#ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+#    include "timer.h"
+#endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+
+enum charybdis_keymap_layers {
+    LAYER_BASE = 0,
+    LAYER_FUNCTION,
+    LAYER_NAVIGATION,
+    LAYER_POINTER,
+    LAYER_NUMERAL,
+    LAYER_SYMBOLS,
+};
+
+enum custom_keycodes {
+    M_CARET = SAFE_RANGE,
+    M_BTICK,
+    M_TILDE,
+    M_CLEAR,
+};
+
+// Automatically enable sniping-mode on the pointer layer.
+// #define CHARYBDIS_AUTO_SNIPING_ON_LAYER LAYER_POINTER
+
+#ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+//static uint16_t auto_pointer_layer_timer = 0;
+
+#    ifndef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS
+#        define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS 1000
+#    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS
+
+#    ifndef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD
+#        define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD 8
+#    endif // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD
+#endif     // CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+
+#define TAB_NAV LT(LAYER_NAVIGATION, KC_TAB)
+#define SPC_NUM LT(LAYER_NUMERAL, KC_SPC)
+#define ESC_FUN LT(LAYER_FUNCTION, KC_ESC)
+#define BSP_SYM LT(LAYER_SYMBOLS, KC_BSPC)
+#define A_SYM LT(LAYER_SYMBOLS, KC_A)
+// #define _L_PTR(KC) LT(LAYER_POINTER, KC)
+
+#ifndef POINTING_DEVICE_ENABLE
+#    define DRGSCRL KC_NO
+#    define DPI_MOD KC_NO
+#    define S_D_MOD KC_NO
+#    define SNIPING KC_NO
+#endif // !POINTING_DEVICE_ENABLE
+
+// clang-format off
+
 /** Convenience row shorthands. */
 #define _______________DEAD_HALF_ROW_______________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
-#define ______________HOME_ROW_GASC_L______________ KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, XXXXXXX
+#define ______________HOME_ROW_GASC_L______________ XXXXXXX, KC_LALT, KC_LSFT, KC_LCTL, KC_LGUI
 #define ______________HOME_ROW_GASC_R______________ XXXXXXX, KC_LCTL, KC_LSFT, KC_LALT, XXXXXXX
 
 
 #define LAYOUT_LAYER_BASE                                                                     \
        KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, \
-       KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, CW_TOGG, \
+      A_SYM,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, CW_TOGG, \
        KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, \
-                      ESC_NAV, SPC_NUM, TAB_FUN,  KC_ENT, BSP_SYM
+                      TAB_NAV, SPC_NUM, ESC_FUN,  KC_ENT, BSP_SYM
 
 #define LAYOUT_LAYER_FUNCTION                                                                 \
     _______________DEAD_HALF_ROW_______________, KC_PSCR,   KC_F9,  KC_F10,  KC_F11,  KC_F12, \
@@ -169,7 +170,7 @@ enum custom_keycodes {
     _______________DEAD_HALF_ROW_______________, S_D_MOD, DPI_MOD, XXXXXXX, XXXXXXX, XXXXXXX, \
     ______________HOME_ROW_GASC_L______________, XXXXXXX, XXXXXXX, KC_BTN3, XXXXXXX, XXXXXXX, \
     _______________DEAD_HALF_ROW_______________, XXXXXXX, KC_BTN1, DRGSCRL, KC_BTN2, SNIPING, \
-                      ESC_PNT, _______, _______, _______, _______
+                      _______, _______, M_CLEAR, _______, _______
 
 #define LAYOUT_LAYER_NAVIGATION                                                               \
     XXXXXXX, KC_HOME,   KC_UP,  KC_END, XXXXXXX, _______________DEAD_HALF_ROW_______________, \
@@ -196,7 +197,7 @@ enum custom_keycodes {
     ...)                                                               \
              L00,         L01,         L02,         L03,         L04,  \
              R05,         R06,         R07,         R08,         R09,  \
-      LGUI_T(L10), LALT_T(L11), LSFT_T(L12), LCTL_T(L13),        L14,  \
+             L10,  LALT_T(L11), LSFT_T(L12), LCTL_T(L13), LGUI_T(L14), \
              R15,  RCTL_T(R16), RSFT_T(R17), LALT_T(R18),        R19,  \
       __VA_ARGS__
 #define HOME_ROW_MOD_GASC(...) _HOME_ROW_MOD_GASC(__VA_ARGS__)
@@ -302,7 +303,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             break;
         case M_TILDE:
-            if(record->event.pressed) {
+            if (record->event.pressed) {
                 register_code(KC_RALT);
                 register_code(KC_RBRC); // (¨)
                 //_delay_ms(10);
@@ -313,10 +314,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_SPC);
             }
             break;
+        case M_CLEAR:
+            if (record->event.pressed) {
+                layer_clear();
+            }
+            break;
         default:
             return true;
     }
     return false;
+}
+
+bool caps_word_press_user(uint16_t keycode) {
+    switch (keycode) {
+        case KC_A ... KC_Z:
+        case SE_MINS:
+        case SE_ARNG:
+        case SE_ADIA:
+        case SE_ODIA:
+            add_weak_mods(MOD_BIT(KC_LSFT));
+            return true;
+        case KC_1 ... KC_0:
+        case KC_BSPC:
+        case KC_DEL:
+            return true;
+
+        default:
+            return false;
+    }
 }
 
 
