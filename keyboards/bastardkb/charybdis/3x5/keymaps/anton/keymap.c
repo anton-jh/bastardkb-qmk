@@ -157,7 +157,7 @@ enum custom_keycodes {
 #define _______________DEAD_HALF_ROW_______________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 #define _______________TRAN_HALF_ROW_______________ _______, _______, _______, _______, _______
 #define ______________HOME_ROW_GASC_L______________ XXXXXXX, KC_LALT, KC_LSFT, KC_LCTL, KC_LGUI
-#define ______________HOME_ROW_GASC_R______________ XXXXXXX, KC_LCTL, KC_LSFT, KC_LALT, XXXXXXX
+#define ______________HOME_ROW_GASC_R______________ KC_LGUI, KC_LCTL, KC_LSFT, KC_LALT, XXXXXXX
 
 
 #define LAYOUT_LAYER_BASE                                                                     \
