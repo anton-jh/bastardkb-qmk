@@ -155,6 +155,7 @@ enum custom_keycodes {
 
 /** Convenience row shorthands. */
 #define _______________DEAD_HALF_ROW_______________ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+#define _______________TRAN_HALF_ROW_______________ _______, _______, _______, _______, _______
 #define ______________HOME_ROW_GASC_L______________ XXXXXXX, KC_LALT, KC_LSFT, KC_LCTL, KC_LGUI
 #define ______________HOME_ROW_GASC_R______________ XXXXXXX, KC_LCTL, KC_LSFT, KC_LALT, XXXXXXX
 
@@ -178,9 +179,9 @@ enum custom_keycodes {
                       XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
 
 #define LAYOUT_LAYER_POINTER                                                                  \
-    _______________DEAD_HALF_ROW_______________, S_D_MOD, DPI_MOD, XXXXXXX, XXXXXXX, XXXXXXX, \
+    _______________TRAN_HALF_ROW_______________, S_D_MOD, DPI_MOD, XXXXXXX, XXXXXXX, XXXXXXX, \
     ______________HOME_ROW_GASC_L______________, XXXXXXX, XXXXXXX, KC_BTN3, XXXXXXX, XXXXXXX, \
-    _______________DEAD_HALF_ROW_______________, XXXXXXX, KC_BTN1, DRGSCRL, KC_BTN2, SNIPING, \
+    _______________TRAN_HALF_ROW_______________, XXXXXXX, KC_BTN1, DRGSCRL, KC_BTN2, SNIPING, \
                       _______, _______, M_CLEAR, _______, _______
 
 #define LAYOUT_LAYER_NAVIGATION                                                               \
