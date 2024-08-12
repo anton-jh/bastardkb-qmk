@@ -180,14 +180,14 @@ enum custom_keycodes {
 
 #define LAYOUT_LAYER_POINTER                                                                  \
     _______________TRAN_HALF_ROW_______________, S_D_MOD, DPI_MOD, XXXXXXX, XXXXXXX, XXXXXXX, \
-    ______________HOME_ROW_GASC_L______________, XXXXXXX, XXXXXXX, KC_BTN3, XXXXXXX, XXXXXXX, \
+    ______________HOME_ROW_GASC_L______________, XXXXXXX, KC_BTN4, KC_BTN3, KC_BTN5, XXXXXXX, \
     _______________TRAN_HALF_ROW_______________, XXXXXXX, KC_BTN1, DRGSCRL, KC_BTN2, SNIPING, \
                       _______, _______, M_CLEAR, _______, _______
 
 #define LAYOUT_LAYER_NAVIGATION                                                               \
     KC_PGUP, KC_HOME,   KC_UP,  KC_END,  KC_INS, _______________DEAD_HALF_ROW_______________, \
     KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT,  KC_DEL, ______________HOME_ROW_GASC_R______________, \
-    XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, _______________DEAD_HALF_ROW_______________, \
+    KC_BTN4, KC_MPRV, KC_MPLY, KC_MNXT, KC_BTN5, _______________DEAD_HALF_ROW_______________, \
                       _______, _______, _______,  KC_ENT, KC_BSPC
 
 #define LAYOUT_LAYER_NUMERAL                                                                  \
