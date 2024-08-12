@@ -142,6 +142,8 @@ enum custom_keycodes {
 #define DF_GAME DF(LAYER_GAME)
 #define TAB_NUM LT(LAYER_NUMERAL, KC_TAB)
 #define ESC_NAV LT(LAYER_NAVIGATION, KC_ESC)
+#define NXT_TAB C(KC_TAB)
+#define PRV_TAB C(S(KC_TAB))
 // #define _L_PTR(KC) LT(LAYER_POINTER, KC)
 
 #ifndef POINTING_DEVICE_ENABLE
@@ -179,9 +181,9 @@ enum custom_keycodes {
                       XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
 
 #define LAYOUT_LAYER_POINTER                                                                  \
-    _______________TRAN_HALF_ROW_______________, S_D_MOD, DPI_MOD, XXXXXXX, XXXXXXX, XXXXXXX, \
-    ______________HOME_ROW_GASC_L______________, XXXXXXX, KC_BTN4, KC_BTN3, KC_BTN5, XXXXXXX, \
-    _______________TRAN_HALF_ROW_______________, XXXXXXX, KC_BTN1, DRGSCRL, KC_BTN2, SNIPING, \
+    _______________TRAN_HALF_ROW_______________, DPI_MOD, PRV_TAB, NXT_TAB, G(KC_V), S(KC_X), \
+    ______________HOME_ROW_GASC_L______________, C(KC_T), KC_BTN4, KC_BTN3, KC_BTN5, S(KC_V), \
+    _______________TRAN_HALF_ROW_______________, C(KC_W), KC_BTN1, DRGSCRL, KC_BTN2, S(KC_C), \
                       _______, _______, M_CLEAR, _______, _______
 
 #define LAYOUT_LAYER_NAVIGATION                                                               \
