@@ -32,6 +32,7 @@
 #define CAPS_WORD_INVERT_ON_SHIFT
 //#define RETRO_SHIFT 1000
 #define PERMISSIVE_HOLD
+#define TAP_CODE_DELAY 50
 
 
 /* Charybdis-specific features. */
