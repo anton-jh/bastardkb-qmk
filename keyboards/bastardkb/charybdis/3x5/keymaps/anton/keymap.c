@@ -144,6 +144,7 @@ enum custom_keycodes {
 #define ESC_NAV LT(LAYER_NAVIGATION, KC_ESC)
 #define NXT_TAB C(KC_TAB)
 #define PRV_TAB C(S(KC_TAB))
+#define MOM_NUM MO(LAYER_NUMERAL)
 // #define _L_PTR(KC) LT(LAYER_POINTER, KC)
 
 #ifndef POINTING_DEVICE_ENABLE
@@ -172,7 +173,7 @@ enum custom_keycodes {
      KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, \
     KC_LSFT,    KC_A,    KC_S,    KC_D,    KC_F,    KC_H,    KC_J,    KC_K,    KC_L, DF_BASE, \
     KC_LCTL,    KC_Z,    KC_X,    KC_C,    KC_V,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, \
-                      TAB_NUM, KC_SPC, ESC_NAV,  KC_ENT, BSP_SYM
+                      MOM_NUM, KC_SPC, ESC_NAV,  KC_ENT, BSP_SYM
 
 #define LAYOUT_LAYER_FUNCTION                                                                 \
     _______________DEAD_HALF_ROW_______________, KC_PSCR,   KC_F9,  KC_F10,  KC_F11,  KC_F12, \
@@ -181,10 +182,10 @@ enum custom_keycodes {
                       XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
 
 #define LAYOUT_LAYER_POINTER                                                                  \
-    _______________TRAN_HALF_ROW_______________, DPI_MOD, PRV_TAB, NXT_TAB, G(KC_V), S(KC_X), \
-    ______________HOME_ROW_GASC_L______________, C(KC_T), KC_BTN4, KC_BTN3, KC_BTN5, S(KC_V), \
-    _______________TRAN_HALF_ROW_______________, C(KC_W), KC_BTN1, DRGSCRL, KC_BTN2, S(KC_C), \
-                      _______, _______, M_CLEAR, _______, _______
+    _______________DEAD_HALF_ROW_______________, DPI_MOD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+    ______________HOME_ROW_GASC_L______________, XXXXXXX, KC_BTN4, KC_BTN3, KC_BTN5, XXXXXXX, \
+    _______________DEAD_HALF_ROW_______________, XXXXXXX, KC_BTN1, DRGSCRL, KC_BTN2, XXXXXXX, \
+                      XXXXXXX, SNIPING, M_CLEAR, XXXXXXX, XXXXXXX
 
 #define LAYOUT_LAYER_NAVIGATION                                                               \
     KC_PGUP, KC_HOME,   KC_UP,  KC_END,  KC_INS, _______________DEAD_HALF_ROW_______________, \
@@ -200,7 +201,7 @@ enum custom_keycodes {
 
 #define LAYOUT_LAYER_SYMBOLS                                                                  \
     SE_PERC, SE_HASH, SE_AMPR,  SE_DLR, M_CARET, SE_ACUT, SE_SLSH, SE_ARNG, SE_ADIA, SE_ODIA, \
-    SE_EXLM, SE_DQUO,  SE_EQL, SE_RABK, SE_PLUS, SE_QUOT, SE_LPRN, SE_RPRN, SE_LCBR, SE_RCBR, \
+    SE_EXLM, SE_DQUO,  SE_EQL, SE_RABK, SE_ASTR, SE_QUOT, SE_LPRN, SE_RPRN, SE_LCBR, SE_RCBR, \
     SE_BSLS, SE_LABK, SE_PIPE,   SE_AT, M_BTICK, M_TILDE, SE_PLUS, SE_QUES, SE_LBRC, SE_RBRC, \
                       _______, _______, _______, _______, _______
 
