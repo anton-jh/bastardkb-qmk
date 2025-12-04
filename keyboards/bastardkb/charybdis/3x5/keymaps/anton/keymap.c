@@ -179,12 +179,12 @@ enum custom_keycodes {
     _______________DEAD_HALF_ROW_______________, KC_PSCR,   KC_F9,  KC_F10,  KC_F11,  KC_F12, \
     ______________HOME_ROW_GASC_L______________, KC_SCRL,   KC_F5,   KC_F6,   KC_F7,   KC_F8, \
     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DF_GAME, KC_PAUS,   KC_F1,   KC_F2,   KC_F3,   KC_F4, \
-                      XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
+                      XXXXXXX, XXXXXXX, _______, KC_CAPS,  KC_NUM
 
 #define LAYOUT_LAYER_POINTER                                                                  \
-    _______________DEAD_HALF_ROW_______________, DPI_MOD, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+    _______________DEAD_HALF_ROW_______________, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
     ______________HOME_ROW_GASC_L______________, XXXXXXX, KC_BTN4, KC_BTN3, KC_BTN5, M_CLEAR, \
-    _______________DEAD_HALF_ROW_______________, XXXXXXX, KC_BTN1, DRGSCRL, KC_BTN2, XXXXXXX, \
+    S_D_RMOD,S_D_MOD, SNIPING,DPI_RMOD, DPI_MOD, XXXXXXX, KC_BTN1, DRGSCRL, KC_BTN2, XXXXXXX, \
                       _______, _______, _______, _______, _______
 
 #define LAYOUT_LAYER_NAVIGATION                                                               \
